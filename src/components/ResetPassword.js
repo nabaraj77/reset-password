@@ -83,6 +83,7 @@ const ResetPassword = () => {
                 type="number"
                 {...register("phoneNumber", {
                   required: "Phone Number is required",
+                  pattern: /[9][8][0-9]{8}/,
                   maxLength: {
                     value: 10,
                     message: "Mobile Number must be 10 digits.",
@@ -98,10 +99,13 @@ const ResetPassword = () => {
                 <span>*Phone Number is required.</span>
               )}
               {errors.phoneNumber?.type === "minLength" && (
-                <span>*Mobile Number must be 10 digits.</span>
+                <span>*Enter valid mobile number.</span>
               )}
               {errors.phoneNumber?.type === "maxLength" && (
-                <span>*Mobile Number must be 10 digits.</span>
+                <span>*Enter valid mobile number.</span>
+              )}
+              {errors.phoneNumber?.type === "pattern" && (
+                <span>*Enter valid mobile number</span>
               )}
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ResetPassword from "./ResetPassword";
 
 const VerifyOtp = () => {
   const [otp, setOtp] = useState(new Array(5).fill(""));
