@@ -1,21 +1,25 @@
 import React, { useEffect, useRef, useContext } from "react";
 
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { BoolContext } from "../context/value";
-// import { axiosData } from "./api/axios";
 
-import "./ResetPassword.css";
+import { axiosData } from "../api/axiosData";
+
+// import "../Css/main.scss";
+import "../assets/Scss/style.scss";
 
 const ResetPassword = () => {
-  const { setBool } = useContext(BoolContext);
+  const navigate = useNavigate();
   // const userNameFocus = useRef();
   // useEffect(() => {
   //   userNameFocus.current.focus();
   // }, []);
   const handleRegistration = (data) => {
     console.log(data);
-    setBool(1);
+
+    navigate("/verifyOtp");
+
     resetField("userName");
     resetField("phoneNumber");
 
@@ -30,13 +34,7 @@ const ResetPassword = () => {
     //   try {
     //     await axiosData.post("/request/otp", data);
     //   } catch (err) {
-    //     if (!err?.response) {
-    //       toast.error("No Server Response.");
-    //     } else if (err.response?.status === 401) {
-    //       toast.error("Un authenciated.");
-    //     } else {
-    //       toast.error("Login Failed.");
-    //     }
+    //     console.log(err)
     //   }
     // };
   };
@@ -52,7 +50,7 @@ const ResetPassword = () => {
   return (
     <div className="wrapper">
       <div className="formWrapper shadow p-3 bg-red rounded col-sm-7 col-10">
-        <form onSubmit={handleSubmit(handleRegistration)}>
+        <form onSubmit={handleSubmit(handleRegistration)} className="form">
           <div className="logoWrapper">
             <img className="logo" src="../images/logo.png" alt="logo" />
           </div>
@@ -70,7 +68,9 @@ const ResetPassword = () => {
                 })}
                 placeholder="Enter User Name"
               />
-              {errors.userName && <span>*User Name is required.</span>}
+              {errors.userName && (
+                <span className="errorDisplay">*User Name is required.</span>
+              )}
             </div>
           </div>
           <div className="form-group row">
@@ -96,16 +96,20 @@ const ResetPassword = () => {
                 placeholder="Enter Phone Number"
               />
               {errors.phoneNumber?.type === "required" && (
-                <span>*Phone Number is required.</span>
+                <span className="errorDisplay">*Phone Number is required.</span>
               )}
               {errors.phoneNumber?.type === "minLength" && (
-                <span>*Enter valid mobile number.</span>
+                <span className="errorDisplay">
+                  *Enter valid mobile number.
+                </span>
               )}
               {errors.phoneNumber?.type === "maxLength" && (
-                <span>*Enter valid mobile number.</span>
+                <span className="errorDisplay">
+                  *Enter valid mobile number.
+                </span>
               )}
               {errors.phoneNumber?.type === "pattern" && (
-                <span>*Enter valid mobile number</span>
+                <span className="errorDisplay">*Enter valid mobile number</span>
               )}
             </div>
           </div>

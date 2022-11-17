@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
-import ResetPassword from "./components/ResetPassword";
-import VerifyOtp from "./components/VerifyOtp";
-import { BoolContext } from "./context/value";
+import Routers from "./routes/Routers";
 
 const App = () => {
-  const { bool } = useContext(BoolContext);
-  console.log(bool);
-
-  // let bool = 0;
-  return <div>{bool === 0 ? <ResetPassword /> : <VerifyOtp />}</div>;
+  // return <div>{bool === 0 ? <ResetPassword /> : <VerifyOtp />}</div>;
+  return (
+    <>
+      <Routers />
+    </>
+  );
 };
 
 export default App;
